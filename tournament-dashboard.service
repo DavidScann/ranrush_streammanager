@@ -1,0 +1,28 @@
+[Unit]
+Description=Tournament Dashboard Node.js Application
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/ranrush_streammanager
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=10
+Environment=NODE_ENV=production
+Environment=PORT=3000
+
+# Logging
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=tournament-dashboard
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/ranrush_streammanager
+
+[Install]
+WantedBy=multi-user.target
